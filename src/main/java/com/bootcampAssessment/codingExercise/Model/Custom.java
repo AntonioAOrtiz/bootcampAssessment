@@ -32,6 +32,18 @@ public class Custom {
 		this.phoneNumber = phoneNumber;
 		this.email = email;
 	}
+	
+	public Custom(String firstName, String lastName, String phoneNumber, String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		
+	}
+	
+	public Custom() {
+		
+	}
 
 	public long getId() {
 		return id;

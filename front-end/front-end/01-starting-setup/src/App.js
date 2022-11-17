@@ -1,21 +1,12 @@
-import Email from "./components/email";
-import FirstName from "./components/firstName";
-import Information from "./components/information";
-import LastName from "./components/lastName";
-import PhoneNumber from "./components/phoneNumber";
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
-import "./components/information.css"
-
-
+import axios from "axios";
+import "./components/information.css";
 
 function App() {
-
   const [enteredFirstName, setEnteredFirstName] = useState("");
   const [enteredLastName, setEnteredLastName] = useState("");
   const [enteredPhoneNumber, setEnteredPhoneNumber] = useState("");
   const [enteredEmail, setEnteredEmail] = useState("");
-
 
   const firstNameChangeHandler = (event) => {
     setEnteredFirstName(event.target.value);
@@ -34,32 +25,65 @@ function App() {
   const clickHandlerSaveData = (event) => {
     event.preventDefault();
 
-    const data = { firstName: enteredFirstName, lastName: enteredLastName, phoneNumber: enteredPhoneNumber, email: enteredEmail};
+    const data = {
+      firstName: enteredFirstName,
+      lastName: enteredLastName,
+      phoneNumber: enteredPhoneNumber,
+      email: enteredEmail,
+    };
 
     console.log(data);
 
-axios
-.post("http://localhost:8080/customs", data)
+    axios
+      .post("http://localhost:8080/custom", data)
 
-.then(function (response) {
-  console.log(response.data);
-})
+      .then(function (response) {
+        console.log(response.data);
+      })
 
-.catch(function (error) {
-  console.log(error);
-});
-};
-
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
 
   return (
     <div>
       <h2>Please type in your data</h2>
-      <label>ID: provided by backend</label>
-      <FirstName value = {enteredFirstName} onChange = {firstNameChangeHandler}> </FirstName>
-      <LastName value = {enteredLastName} onChange = {lastNameChangeHandler}></LastName>
-      <PhoneNumber value = {enteredPhoneNumber} onChange = {phoneNumberChangeHandler}></PhoneNumber>
-      <Email value = {enteredEmail} onChange = {emailChangeHandler}></Email>
-      <button className="information_button" onClick={clickHandlerSaveData}> Save </button>
+      
+      <div className="information">
+        <label className="information__description">Enter First Name</label>
+        <input
+          type="text"
+          value={enteredFirstName}
+          onChange={firstNameChangeHandler}
+        />
+      </div>
+
+      <div className="information">
+        <label className="information__description">Enter Last Name</label>
+        <input
+          type="text"
+          value={enteredLastName}
+          onChange={lastNameChangeHandler}
+        />
+      </div>
+      <div className="information">
+        <label className="information__description">Enter Phone Number</label>
+        <input
+          type="text"
+          value={enteredPhoneNumber}
+          onChange={phoneNumberChangeHandler}
+        />
+      </div>
+      <div className="information">
+        <label className="information__description"> e-mail</label>
+        <input type="text" value={enteredEmail} onChange={emailChangeHandler} />
+      </div>
+
+      <button className="information_button" onClick={clickHandlerSaveData}>
+        {" "}
+        Save{" "}
+      </button>
     </div>
   );
 }

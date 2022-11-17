@@ -12,16 +12,16 @@ public class Custom {
 	@GeneratedValue
 	private long id;
 	
-	@Column
+	@Column(length = 25)
 	private String firstName;
 	
-	@Column
+	@Column(length = 25)
 	private String lastName;
 	
-	@Column
+	@Column(length = 20)
 	private String phoneNumber;
 	
-	@Column
+	@Column(length = 25)
 	private String email;
 	
 	public Custom(long id, String firstName, String lastName, String phoneNumber, String email) {
